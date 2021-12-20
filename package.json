@@ -1,0 +1,25 @@
+{
+    "name": "yui-vs-code-support",
+    "displayName": "YUI VS Code Support",
+    "description": "Syntax highlighting for YUI files",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.63.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "yui",
+            "aliases": ["yui", "yui"],
+            "extensions": [".yui"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "yui",
+            "scopeName": "source.yui",
+            "path": "./syntaxes/yui.tmLanguage.json"
+        }]
+    }
+}
