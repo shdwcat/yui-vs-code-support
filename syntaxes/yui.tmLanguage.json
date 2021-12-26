@@ -99,13 +99,10 @@
 			]
 		},
 		"block-scalar": {
-			"begin": "(?:(\\|)|(>))([1-9])?([-+])?(.*\\n?)",
+			"begin": "(?:(\\|))([1-9])?([-+])?(.*\\n?)",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.flow.block-scalar.literal.yaml"
-				},
-				"2": {
-					"name": "keyword.control.flow.block-scalar.folded.yaml"
 				},
 				"3": {
 					"name": "constant.numeric.indentation-indicator.yaml"
