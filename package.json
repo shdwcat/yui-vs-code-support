@@ -3,12 +3,25 @@
     "displayName": "YUI VS Code Support",
     "description": "Syntax highlighting for YUI files",
     "version": "0.0.1",
+    "preview": true,
+    "publisher": "shdwcat",
+    "author": { "name": "shdwcat" },
+    "license": "SEE LICENSE IN LICENSE.txt",
     "engines": {
         "vscode": "^1.63.0"
     },
     "categories": [
         "Programming Languages"
     ],
+    "homepage": "https://github.com/shdwcat/yui-vs-code-support/blob/main/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/shdwcat/yui-vs-code-support.git"
+    },
+    "bugs": {
+        "url": "https://github.com/shdwcat/yui-vs-code-support/issues"
+    },
+    "keywords": ["yui", "gms2"],
     "contributes": {
         "languages": [{
             "id": "yui",
