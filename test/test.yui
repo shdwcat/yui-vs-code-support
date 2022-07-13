@@ -1,0 +1,39 @@
+id: game_card
+file_type: resources
+
+import:
+  - "../Interactions/play_card.yui"
+
+resources:
+  game_card:
+    type: template
+    slots:
+      // whether to display the full card text or just name and cost
+      collapsed: false
+      // what to do when this card is dragged
+      on_activate: null
+    template:
+      type: panel
+      layout: canvas
+      size: { w: 140, h: $collapsed then 32 else 160 }
+      padding: 5
+      background: black
+      border_color: green
+      //border_color: $theme.resources.control_bg_light
+      border_thickness: 1
+      events:
+        on_mouse_down: $on_activate
+      elements:
+        - type: text
+          text: @name
+          text_style: subtitle
+        - type: text
+          text: @@ '@' + @cost.cost_values.cycles
+          canvas: 
+            right: 0
+        - type: text
+          text: @card_text
+          visible: $collapsed == false
+          scribble: true
+          canvas:
+            top: 30

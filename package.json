@@ -32,7 +32,12 @@
         "grammars": [{
             "language": "yui",
             "scopeName": "source.yui",
-            "path": "./syntaxes/yui.tmLanguage.json"
+            "path": "./syntaxes/yui.tmLanguage.json",
+            "embeddedLanguages": {
+                "source.yuiscript": "talescript",
+                "meta.embedded.yuiscript": "talescript",
+                "meta.embedded.inline.yuiscript": "talescript"
+            }
         }]
     }
 }

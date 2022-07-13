@@ -80,7 +80,7 @@
 							"include": "#flow-scalar-plain-out-implicit-type"
 						},
 						{
-							"begin": "(?x)\n                                  [^\\s[-?:,\\[\\]{}&*!|>'\"%`]]\n                                | [?:-] \\S\n                            ",
+							"begin": "(?x)\n                                  [^\\s[-?:,\\[\\]{}*!|>'\"%`]]\n                                | [?:-] \\S\n                            ",
 							"beginCaptures": {
 								"0": {
 									"name": "entity.name.tag.yaml"
@@ -151,7 +151,7 @@
 						}
 					},
 					"end": "\\n",
-					"name": "comment.line.number-sign.yaml"
+					"name": "comment.line.double-slash"
 				}
 			]
 		},
@@ -271,7 +271,7 @@
 							"include": "#flow-scalar-plain-in-implicit-type"
 						},
 						{
-							"begin": "(?x)\n                                  [^\\s[-?:,\\[\\]{}&*!|>'\"%`]]\n                                | [?:-] [^\\s[\\[\\]{},]]\n                            ",
+							"begin": "(?x)\n                                  [^\\s[-?:,\\[\\]{}*!|>'\"%`]]\n                                | [?:-] [^\\s[\\[\\]{},]]\n                            ",
 							"beginCaptures": {
 								"0": {
 									"name": "entity.name.tag.yaml"
@@ -346,7 +346,7 @@
 					"include": "#flow-scalar-plain-in-implicit-type"
 				},
 				{
-					"begin": "(?x)\n                          [^\\s[-?:,\\[\\]{}&*!|>'\"%`]]\n                        | [?:-] [^\\s[\\[\\]{},]]\n                    ",
+					"begin": "(?x)\n                          [^\\s[-?:,\\[\\]{}*!|>'\"%`]]\n                        | [?:-] [^\\s[\\[\\]{},]]\n                    ",
 					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \/\/\n                            | \\s* : (\\s|$)\n                            | \\s* : [\\[\\]{},]\n                            | \\s* [\\[\\]{},]\n                        )\n                    ",
 					"name": "string.unquoted.plain.in.yaml"
 				}
@@ -388,9 +388,13 @@
 					"include": "#flow-scalar-plain-out-implicit-type"
 				},
 				{
-					"begin": "(?x)\n                          [^\\s[-?:,\\[\\]{}&*!|>'\"%`]]\n                        | [?:-] \\S\n                    ",
+					"begin": "(?x)\n                          (?= [^\\s[-?:,\\[\\]{}*!|>'\"%`]]\n                        | [?:-] \\S)\n                    ",
 					"end": "(?x)\n                        (?=\n                              \\s* $\n                            | \\s+ \/\/\n                            | \\s* : (\\s|$)\n                        )\n                    ",
-					"name": "string.unquoted.plain.out.yaml"
+					"patterns": [
+						{
+							"include": "#string-unquoted-plain-out"
+						}
+					]
 				}
 			]
 		},
@@ -486,6 +490,30 @@
 							"include": "#flow-node"
 						}
 					]
+				}
+			]
+		},
+		"string-unquoted-plain-in": {
+		},
+		"string-unquoted-plain-out": {
+			"patterns": [
+				{
+					"include": "#inline-yuiscript"
+				},
+				{
+					"begin": "(?=.)",
+					"end": "(?=\\s\/\/)|$",
+					"contentName": "string.unquoted.expression"
+				}
+			]
+		},
+		"inline-yuiscript": {
+			"name": "meta.embedded.inline.yuiscript",
+			"begin": "(?=[@&\\$])",
+			"end": "\\n",
+			"patterns": [
+				{
+					"include": "source.talescript"
 				}
 			]
 		},
