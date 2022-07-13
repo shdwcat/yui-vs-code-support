@@ -87,8 +87,7 @@
 								}
 							},
 							"contentName": "entity.name.tag.yaml",
-							"end": "(?x)\n                                (?=\n                                      \\s* $\n                                    | \\s+ \/\/\n                                    | \\s* : (\\s|$)\n                                )\n                            ",
-							"name": "string.unquoted.plain.out.yaml"
+							"end": "(?x)\n                                (?=\n                                      \\s* $\n                                    | \\s+ \/\/\n                                    | \\s* : (\\s|$)\n                                )\n                            "
 						}
 					]
 				},
@@ -279,8 +278,7 @@
 								}
 							},
 							"contentName": "entity.name.tag.yaml",
-							"end": "(?x)\n                                (?=\n                                      \\s* $\n                                    | \\s+ \/\/\n                                    | \\s* : (\\s|$)\n                                    | \\s* : [\\[\\]{},]\n                                    | \\s* [\\[\\]{},]\n                                )\n                            ",
-							"name": "string.unquoted.plain.in.yaml"
+							"end": "(?x)\n                                (?=\n                                      \\s* $\n                                    | \\s+ \/\/\n                                    | \\s* : (\\s|$)\n                                    | \\s* : [\\[\\]{},]\n                                    | \\s* [\\[\\]{},]\n                                )\n                            "
 						}
 					]
 				},
