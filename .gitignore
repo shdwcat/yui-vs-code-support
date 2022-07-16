@@ -1,2 +1,8 @@
-node_modules
-*.vsix
+# Dependencies
+node_modules/
+
+#Compiled JSON
+syntaxes/*.json
+
+# Packaged extensions
+**/*.vsix
