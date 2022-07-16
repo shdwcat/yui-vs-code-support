@@ -62,7 +62,7 @@ repository:
                         | [?:-] \\S"
                     beginCaptures:
                         "0":
-                            name: entity.name.tag.yaml.out
+                            name: entity.name.tag.yaml
                     contentName: entity.name.tag.yaml
                     end: "(?x)
                         (?=
@@ -236,34 +236,16 @@ repository:
         patterns:
             - include: "#flow-scalar-plain-in-implicit-type"
             - begin: "(?x)
-
-                  \                          [^\\s[-?:,\\[\\]\
-                  {}*!|>'\"%`]]
-
-                  \                        | [?:-]
-                  [^\\s[\\[\\]{},]]
-
-                  \                    "
+                [^\\s[-?:,\\[\\]{}*!|>'\"%`]]
+                | [?:-] [^\\s[\\[\\]{},]]"
               end: "(?x)
-
-                  \                        (?=
-
-                  \                              \\s* $
-
-                  \                            | \\s+ //
-
-                  \                            | \\s* :
-                  (\\s|$)
-
-                  \                            | \\s* :
-                  [\\[\\]{},]
-
-                  \                            | \\s*
-                  [\\[\\]{},]
-
-                  \                        )
-
-                  \                    "
+                (?=
+                    \\s* $
+                    | \\s+ //
+                    | \\s* : (\\s|$)
+                    | \\s* : [\\[\\]{},]
+                    | \\s* [\\[\\]{},]
+                )"
               name: string.unquoted.plain.in.yaml
     flow-scalar-plain-in-implicit-type:
         patterns:
