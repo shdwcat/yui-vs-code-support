@@ -11,6 +11,18 @@ repository:
             - include: "#block-mapping"
     block-mapping:
         patterns:
+            - begin: "(type)(:) "
+              beginCaptures:
+                "1":
+                    name: entity.other.attribute-name
+                "2":
+              end: "(?x)
+                (?=
+                    \\s* $
+                    | \\s+ //
+                    | \\s* : (\\s|$)
+                )"
+              contentName: "constant.language.type.yui"
             - include: "#block-pair"
     block-node:
         patterns:
