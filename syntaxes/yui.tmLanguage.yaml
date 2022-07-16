@@ -464,7 +464,7 @@ repository:
         begin: (?=[@&\$])
         end: \n
         patterns:
-            - include: source.talescript
+            - include: source.yuiscript
     node:
         patterns:
             - include: "#block-node"

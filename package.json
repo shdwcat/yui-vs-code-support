@@ -34,9 +34,9 @@
             "scopeName": "source.yui",
             "path": "./syntaxes/yui.tmLanguage.json",
             "embeddedLanguages": {
-                "source.yuiscript": "talescript",
-                "meta.embedded.yuiscript": "talescript",
-                "meta.embedded.inline.yuiscript": "talescript"
+                "source.yuiscript": "yuiscript",
+                "meta.embedded.yuiscript": "yuiscript",
+                "meta.embedded.inline.yuiscript": "yuiscript"
             }
         }]
     },
