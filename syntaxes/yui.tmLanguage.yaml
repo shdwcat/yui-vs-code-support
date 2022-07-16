@@ -223,8 +223,9 @@ repository:
         patterns:
             - include: "#flow-scalar-plain-in-implicit-type"
             - begin: "(?x)
-                [^\\s[-?:,\\[\\]{}*!|>'\"%`]]
-                | [?:-] [^\\s[\\[\\]{},]]"
+                (?=
+                    [^\\s[-?:,\\[\\]{}*!|>'\"%`]]
+                    | [?:-] \\S)"
               end: "(?x)
                 (?=
                     \\s* $
@@ -233,7 +234,9 @@ repository:
                     | \\s* : [\\[\\]{},]
                     | \\s* [\\[\\]{},]
                 )"
-              name: string.unquoted.plain.in.yaml
+              patterns:
+                  - include: "#inline-yuiscript-in"
+                  - include: "#string-unquoted-plain-in"
     flow-scalar-plain-in-implicit-type:
         patterns:
             - captures:
@@ -317,6 +320,7 @@ repository:
                     | \\s* : (\\s|$)
                 )"
               patterns:
+                  - include: "#inline-yuiscript-out"
                   - include: "#string-unquoted-plain-out"
     flow-scalar-plain-out-implicit-type:
         patterns:
@@ -421,15 +425,38 @@ repository:
               name: meta.flow-pair.value.yaml
               patterns:
                   - include: "#flow-node"
-    string-unquoted-plain-in: {}
+    string-unquoted-plain-in:
+        patterns:
+            - begin: (?=.)
+              end: "(?x)
+                (?=
+                    \\s* $
+                    | \\s+ //
+                    | \\s* : (\\s|$)
+                    | \\s* : [\\[\\]{},]
+                    | \\s* [\\[\\]{},]
+                )"
+              contentName: string.unquoted.expression
+    inline-yuiscript-in:
+        name: meta.embedded.inline.yuiscript.in
+        begin: (?=[@&\$])
+        end: "(?x)
+            (?=
+                \\s* $
+                | \\s+ //
+                | \\s* : (\\s|$)
+                | \\s* : [\\[\\]{},]
+                | \\s* [\\[\\]{},]
+            )"
+        patterns:
+            - include: source.yuiscript
     string-unquoted-plain-out:
         patterns:
-            - include: "#inline-yuiscript"
             - begin: (?=.)
               end: (?=\s//)|$
               contentName: string.unquoted.expression
-    inline-yuiscript:
-        name: meta.embedded.inline.yuiscript
+    inline-yuiscript-out:
+        name: meta.embedded.inline.yuiscript.out
         begin: (?=[@&\$])
         end: \n
         patterns:
