@@ -21,19 +21,6 @@ repository:
             - include: "#flow-node"
     block-pair:
         patterns:
-            - begin: \?
-              beginCaptures:
-                  "1":
-                      name: punctuation.definition.key-value.begin.yaml
-              end: (?=\?)|^ *(:)|(:)
-              endCaptures:
-                  "1":
-                      name: punctuation.separator.key-value.mapping.yaml
-                  "2":
-                      name: invalid.illegal.expected-newline.yaml
-              name: meta.block-mapping.yaml
-              patterns:
-                  - include: "#block-node"
             - begin: "(?x)
                 (?=
                     (?x:
