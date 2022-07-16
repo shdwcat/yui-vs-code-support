@@ -24,7 +24,7 @@ repository:
             - begin: "(?x)
                 (?=
                     (?x:
-                        [^\\s[-?:,\\[\\]{}&*!|>'\"%`]]
+                        [^\\s[-?:,\\[\\]{}&!|>'\"%`]]
                         | [?:-] \\S
                     )
                     (
@@ -45,7 +45,7 @@ repository:
               patterns:
                   - include: "#flow-scalar-plain-out-implicit-type"
                   - begin: "(?x)
-                        [^\\s[-?:,\\[\\]{}*!|>'\"%`]]
+                        [^\\s[-?:,\\[\\]{}!|>'\"%`]]
                         | [?:-] \\S"
                     beginCaptures:
                         "0":
@@ -94,17 +94,6 @@ repository:
                       name: punctuation.definition.comment.yaml
               end: \n
               name: comment.line.double-slash
-    flow-alias:
-        captures:
-            "1":
-                name: keyword.control.flow.alias.yaml
-            "2":
-                name: punctuation.definition.alias.yaml
-            "3":
-                name: variable.other.alias.yaml
-            "4":
-                name: invalid.illegal.character.anchor.yaml
-        match: ((\*))([^\s\[\]/{/},]+)([^\s\]},]\S*)?
     flow-collection:
         patterns:
             - include: "#flow-sequence"
@@ -127,7 +116,6 @@ repository:
     flow-node:
         patterns:
             - include: "#prototype"
-            - include: "#flow-alias"
             - include: "#flow-collection"
             - include: "#flow-scalar"
     flow-pair:
@@ -152,7 +140,7 @@ repository:
             - begin: "(?x)
                 (?=
                     (?:
-                        [^\\s[-?:,\\[\\]{}&*!|>'\"%`]]
+                        [^\\s[-?:,\\[\\]{}&!|>'\"%`]]
                         | [?:-] [^\\s[\\[\\]{},]]
                     )
                     (
@@ -176,7 +164,7 @@ repository:
               patterns:
                   - include: "#flow-scalar-plain-in-implicit-type"
                   - begin: "(?x)
-                        [^\\s[-?:,\\[\\]{}*!|>'\"%`]]
+                        [^\\s[-?:,\\[\\]{}!|>'\"%`]]
                         | [?:-] [^\\s[\\[\\]{},]]"
                     beginCaptures:
                         "0":
@@ -224,7 +212,7 @@ repository:
             - include: "#flow-scalar-plain-in-implicit-type"
             - begin: "(?x)
                 (?=
-                    [^\\s[-?:,\\[\\]{}*!|>'\"%`]]
+                    [^\\s[-?:,\\[\\]{}!|>'\"%`]]
                     | [?:-] \\S)"
               end: "(?x)
                 (?=
@@ -252,8 +240,6 @@ repository:
                       name: constant.other.timestamp.yaml
                   "6":
                       name: constant.language.value.yaml
-                  "7":
-                      name: constant.language.merge.yaml
               match: "(?x)
 
                           \                        (?\
@@ -369,9 +355,6 @@ repository:
 
                           \                            \
                           | (=)
-
-                          \                            \
-                          | (<<)
 
                           \                        )
 
@@ -406,7 +389,7 @@ repository:
             - include: "#flow-scalar-plain-out-implicit-type"
             - begin: "(?x)
                 (?=
-                    [^\\s[-?:,\\[\\]{}*!|>'\"%`]]
+                    [^\\s[-?:,\\[\\]{}!|>'\"%`]]
                     | [?:-] \\S)"
               end: "(?x)
                 (?=
@@ -432,8 +415,6 @@ repository:
                       name: constant.other.timestamp.yaml
                   "6":
                       name: constant.language.value.yaml
-                  "7":
-                      name: constant.language.merge.yaml
               match: "(?x)
 
                           \                        (?\
@@ -549,9 +530,6 @@ repository:
 
                           \                            \
                           | (=)
-
-                          \                            \
-                          | (<<)
 
                           \                        )
 
@@ -623,7 +601,7 @@ repository:
                     | \\s* : [\\[\\]{},]
                     | \\s* [\\[\\]{},]
                 )"
-              contentName: string.unquoted.expression
+              contentName: string.unquoted.plain.in.yaml
     inline-yuiscript-in:
         name: meta.embedded.inline.yuiscript.in
         begin: (?=[@&\$])
@@ -641,7 +619,7 @@ repository:
         patterns:
             - begin: (?=.)
               end: (?=\s//)|$
-              contentName: string.unquoted.expression
+              contentName: string.unquoted.plain.out.yaml
     inline-yuiscript-out:
         name: meta.embedded.inline.yuiscript.out
         begin: (?=[@&\$])
