@@ -1,3 +1,9 @@
 .vscode/**
 .vscode-test/**
 .gitignore
+
+*.vsix
+
+syntaxes/*.yaml
+
+node_modules
