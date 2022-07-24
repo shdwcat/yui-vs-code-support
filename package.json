@@ -2,7 +2,7 @@
     "name": "yui-vs-code-support",
     "displayName": "YUI VS Code Support",
     "description": "Syntax highlighting for YUI files",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "preview": true,
     "publisher": "shdwcat",
     "author": {
@@ -27,12 +27,23 @@
     "keywords": ["yui", "gms2"],
     "contributes": {
         "languages": [{
+            "id": "yuiscript",
+            "aliases": [ "YuiScript", "yuiscript" ],
+            "extensions": [ ".ys" ],
+            "configuration": "./yuiscript-language-configuration.json"
+        },
+        {
             "id": "yui",
             "aliases": ["YUI", "yui"],
             "extensions": [".yui"],
-            "configuration": "./language-configuration.json"
+            "configuration": "./yui-language-configuration.json"
         }],
         "grammars": [{
+            "language": "yuiscript",
+            "scopeName": "source.yuiscript",
+            "path": "./syntaxes/yuiscript.tmLanguage.json"
+        },
+        {
             "language": "yui",
             "scopeName": "source.yui",
             "path": "./syntaxes/yui.tmLanguage.json",
@@ -45,7 +56,7 @@
     },
     "scripts": {
         "vscode:prepublish": "npm run convert",
-        "convert": "js-yaml syntaxes/yui.tmLanguage.yaml > syntaxes/yui.tmLanguage.json"
+        "convert": "js-yaml syntaxes/yui.tmLanguage.yaml > syntaxes/yui.tmLanguage.json & js-yaml syntaxes/yuiscript.tmLanguage.yaml > syntaxes/yuiscript.tmLanguage.json"
     },
     "devDependencies": {
         "js-yaml": "^4.1.0"
