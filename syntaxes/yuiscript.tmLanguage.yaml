@@ -1,0 +1,40 @@
+$schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+name: YuiScript
+scopeName: source.yuiscript
+patterns:
+    - include: "#keywords"
+    - include: "#infix-call"
+    - include: "#string-concat"
+    - include: "#escape-syntax"
+    - include: "#bound-variable"
+    - include: "#resource-variable"
+    - include: "#slot-variable"
+    - include: source.js
+repository:
+    keywords:
+        patterns:
+            - name: keyword.control.yuiscript
+              match: \b(then|else)\b
+            - name: keyword.operator.yuiscript
+              match: \b(and|or|not)\b
+    infix-call:
+        match: ">>"
+        name: keyword.operator
+    string-concat:
+        match: \$\+
+        name: keyword.operator
+    escape-syntax:
+        match: "@@"
+        name: constant.character.escape
+    bound-variable:
+        match: "@[^\\(\\s\\.,\\|]*"
+        name: variable.parameter
+    resource-variable:
+        match: "&[^\\(\\s\\.,\\|]+"
+        name: variable.language
+    slot-variable:
+        match: \$[^\(\s\.,\\|]+
+        name: variable.parameter
+    color-literal:
+        match: "#(?:[a-f0-9]{6}|[a-f0-9]{8})\\b"
+        name: constant.rgb-value

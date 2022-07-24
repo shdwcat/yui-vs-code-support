@@ -1,0 +1,19 @@
+// keywords and operators
+ foo >> baz() $+ "w" and true or false
+ 	then x ?? y
+	else null
+
+// escape syntax
+@@ foo + bar
+
+// bound variable
+@foo.bar.bam()
+
+// resource variable
+&foo.bar.bam()
+
+// slot variable
+$foo.bar.bam()
+
+// color literal
+#aabbccff
