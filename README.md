@@ -8,7 +8,7 @@ Provides syntax highlighting for .yui files (see https://github.com/shdwcat/YUI)
 
 ## Release Notes
 
-### 0.2.0
+### 0.1.0
 
 * Adds syntax highlighting support for embedded YuiScript
 * Adds special highlighting for the `type: name` of an element, to make a file's structure easier to understand
