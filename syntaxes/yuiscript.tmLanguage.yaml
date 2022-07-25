@@ -2,43 +2,42 @@ $schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlangua
 name: YuiScript
 scopeName: source.yuiscript
 patterns:
-    - include: "#keywords"
-    - include: "#infix-call"
-    - include: "#string-concat"
     - include: "#escape-syntax"
-    - include: "#bound-variable"
-    - include: "#resource-variable"
-    - include: "#slot-variable"
     - include: "#expression"
 repository:
-    keywords:
-        patterns:
-            - name: keyword.control.yuiscript
-              match: \b(then|else)\b
-            - name: keyword.operator.yuiscript
-              match: \b(and|or|not)\b
-    infix-call:
-        match: ">>"
-        name: keyword.operator
-    string-concat:
-        match: \$\+
-        name: keyword.operator
     escape-syntax:
         match: "@@"
         name: constant.character.escape
+    
+    # inserted into #expression-operators
+    operator-prefix-not:
+        name: keyword.operator.logical
+        match: not
+    operator-infix-call:
+        match: ">>"
+        name: keyword.operator.call
+    operator-string-concat:
+        match: \$\+
+        name: keyword.operator.concat
+
+    # inserted into #identifiers
     bound-variable:
-        match: "@[^\\(\\s\\.,\\|]*"
+        match: "@[^\\(\\)\\s\\.,\\|]*"
         name: variable.parameter
     resource-variable:
-        match: "&[^\\(\\s\\.,\\|]+"
+        match: "&[^\\(\\)\\s\\.,\\|]+"
         name: variable.language
     slot-variable:
-        match: \$[^\(\s\.,\\|]+
+        match: \$[^\(\)\s\.,\\|]+
         name: variable.parameter
+
+    # inserted into #literal
     color-literal:
         match: "#(?:[a-f0-9]{6}|[a-f0-9]{8})\\b"
         name: constant.rgb-value
 
+    # modified javascript expression syntax extracted from:
+    # https://github.com/microsoft/vscode/blob/main/extensions/javascript/syntaxes/JavaScript.tmLanguage.json
     expression:
         patterns:
             - include: "#expressionWithoutIdentifiers"
@@ -288,11 +287,11 @@ repository:
                   - include: "#expression"
             - include: "#punctuation-comma"
     ternary-expression:
-        begin: (?!\?\.\s*[^[:digit:]])(\?)(?!\?)
+        begin: (?!\?\.\s*[^[:digit:]])(then)(?!\?)
         beginCaptures:
             "1":
                 name: keyword.operator.ternary.js
-        end: \s*(:)
+        end: \s*(else)
         endCaptures:
             "1":
                 name: keyword.operator.ternary.js
@@ -334,6 +333,9 @@ repository:
         patterns:
             - include: "#literal"
             - include: "#support-objects"
+            - include: "#bound-variable"
+            - include: "#slot-variable"
+            - include: "#resource-variable"
             - include: "#object-identifiers"
             - include: "#punctuation-accessor"
     new-expr:
@@ -347,36 +349,15 @@ repository:
             - include: "#expression"
     expression-operators:
         patterns:
-            - name: keyword.control.flow.js
-              match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))(await)(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
-            - begin: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))(yield)(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))(?=\s*\/\*([^\*]|(\*[^\/]))*\*\/\s*\*)
-              beginCaptures:
-                  "1":
-                      name: keyword.control.flow.js
-              end: \*
-              endCaptures:
-                  "0":
-                      name: keyword.generator.asterisk.js
-              patterns:
-                  - include: "#comment"
-            - match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))(yield)(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))(?:\s*(\*))?
-              captures:
-                  "1":
-                      name: keyword.control.flow.js
-                  "2":
-                      name: keyword.generator.asterisk.js
+            - include: "#operator-string-concat"
+            - include: "#operator-prefix-not"
+            - include: "#operator-infix-call"
             - name: keyword.operator.new.js
               match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))new(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
-            - name: keyword.operator.expression.void.js
-              match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))void(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
-            - name: keyword.operator.assignment.compound.js
-              match: \*=|(?<!\()/=|%=|\+=|\-=
-            - name: keyword.operator.assignment.compound.bitwise.js
-              match: \&=|\^=|<<=|>>=|>>>=|\|=
             - name: keyword.operator.comparison.js
-              match: ===|!==|==|!=
+              match: ==|!=
             - name: keyword.operator.relational.js
-              match: <=|>=|<>|<|>
+              match: <=|>=|<|>
             - match: (?<=[_$[:alnum:]])(\!)\s*(?:(/=)|(?:(/)(?![/*])))
               captures:
                   "1":
@@ -386,9 +367,11 @@ repository:
                   "3":
                       name: keyword.operator.arithmetic.js
             - name: keyword.operator.logical.js
-              match: \!|\?\?
+              match: \!|\?\?|and|or
             - name: keyword.operator.assignment.js
               match: \=
+            - name: keyword.operator.directive.ys
+              match: \|
             - name: keyword.operator.arithmetic.js
               match: "%|\\*|/|-|\\+"
             - begin: (?<=[_$[:alnum:])\]])\s*(?=(\/\*([^\*]|(\*[^\/]))*\*\/\s*)+(?:(/=)|(?:(/)(?![/*]))))
@@ -408,6 +391,7 @@ repository:
                       name: keyword.operator.arithmetic.js
     literal:
         patterns:
+            - include: "#color-literal"
             - include: "#numeric-literal"
             - include: "#boolean-literal"
             - include: "#null-literal"
@@ -520,6 +504,9 @@ repository:
                       name: support.variable.property.target.js
     identifiers:
         patterns:
+            - include: "#bound-variable"
+            - include: "#slot-variable"
+            - include: "#resource-variable"
             - include: "#object-identifiers"
             - match: >-
                   (?x)(?:(?:(\.)|(\?\.(?!\s*[[:digit:]])))\s*)?([_$[:alpha:]][_$[:alnum:]]*)(?=\s*=\s*(
@@ -612,9 +599,6 @@ repository:
     punctuation-comma:
         name: punctuation.separator.comma.js
         match: ","
-    punctuation-semicolon:
-        name: punctuation.terminator.statement.js
-        match: ;
     punctuation-accessor:
         match: (?:(\.)|(\?\.(?!\s*[[:digit:]])))
         captures:
@@ -626,6 +610,8 @@ repository:
         patterns:
             - include: "#qstring-single"
             - include: "#qstring-double"
+            - include: "#qstring-backtick"
+            # TODO support template/interpolated strings
     qstring-double:
         name: string.quoted.double.js
         begin: '"'
@@ -647,6 +633,20 @@ repository:
             "0":
                 name: punctuation.definition.string.begin.js
         end: (\')|((?:[^\\\n])$)
+        endCaptures:
+            "1":
+                name: punctuation.definition.string.end.js
+            "2":
+                name: invalid.illegal.newline.js
+        patterns:
+            - include: "#string-character-escape"
+    qstring-backtick:
+        name: string.quoted.single.js
+        begin: "`"
+        beginCaptures:
+            "0":
+                name: punctuation.definition.string.begin.js
+        end: (`)|((?:[^\\\n])$)
         endCaptures:
             "1":
                 name: punctuation.definition.string.end.js
