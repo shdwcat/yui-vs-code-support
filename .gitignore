@@ -4,5 +4,9 @@ node_modules/
 # Compiled JSON
 syntaxes/*.json
 
+# local reference
+syntaxes/js.tmLanguage.json
+syntaxes/js.tmLanguage.yaml
+
 # Packaged extensions
 **/*.vsix

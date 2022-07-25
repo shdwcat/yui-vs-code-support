@@ -2,7 +2,7 @@
     "name": "yui-vs-code-support",
     "displayName": "YUI VS Code Support",
     "description": "Syntax highlighting for YUI files",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "preview": true,
     "publisher": "shdwcat",
     "author": {

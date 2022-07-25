@@ -8,6 +8,10 @@ Provides syntax highlighting for .yui files (see https://github.com/shdwcat/YUI)
 
 ## Release Notes
 
+### 0.1.1
+* Syntax highlighting should now work correctly inside parens
+	* YuiScript is now properly defined as a full syntax instead of just tacking things on top of JavaScript
+
 ### 0.1.0
 
 * Adds syntax highlighting support for embedded YuiScript
