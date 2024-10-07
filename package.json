@@ -2,7 +2,7 @@
     "name": "yui-vs-code-support",
     "displayName": "YUI VS Code Support",
     "description": "Syntax highlighting for YUI files",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "preview": true,
     "publisher": "shdwcat",
     "author": {
@@ -24,35 +24,54 @@
     "bugs": {
         "url": "https://github.com/shdwcat/yui-vs-code-support/issues"
     },
-    "keywords": ["yui", "gms2"],
+    "keywords": [
+        "yui",
+        "gamemaker",
+        "gms",
+        "gms2"
+    ],
     "contributes": {
-        "languages": [{
-            "id": "yuiscript",
-            "aliases": [ "YuiScript", "yuiscript" ],
-            "extensions": [ ".ys" ],
-            "configuration": "./yuiscript-language-configuration.json"
-        },
-        {
-            "id": "yui",
-            "aliases": ["YUI", "yui"],
-            "extensions": [".yui"],
-            "configuration": "./yui-language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "yuiscript",
-            "scopeName": "source.yuiscript",
-            "path": "./syntaxes/yuiscript.tmLanguage.json"
-        },
-        {
-            "language": "yui",
-            "scopeName": "source.yui",
-            "path": "./syntaxes/yui.tmLanguage.json",
-            "embeddedLanguages": {
-                "source.yuiscript": "yuiscript",
-                "meta.embedded.yuiscript": "yuiscript",
-                "meta.embedded.inline.yuiscript": "yuiscript"
+        "languages": [
+            {
+                "id": "yuiscript",
+                "aliases": [
+                    "YuiScript",
+                    "yuiscript"
+                ],
+                "extensions": [
+                    ".ys"
+                ],
+                "configuration": "./yuiscript-language-configuration.json"
+            },
+            {
+                "id": "yui",
+                "aliases": [
+                    "YUI",
+                    "yui"
+                ],
+                "extensions": [
+                    ".yui"
+                ],
+                "configuration": "./yui-language-configuration.json"
             }
-        }]
+        ],
+        "grammars": [
+            {
+                "language": "yuiscript",
+                "scopeName": "source.yuiscript",
+                "path": "./syntaxes/yuiscript.tmLanguage.json"
+            },
+            {
+                "language": "yui",
+                "scopeName": "source.yui",
+                "path": "./syntaxes/yui.tmLanguage.json",
+                "embeddedLanguages": {
+                    "source.yuiscript": "yuiscript",
+                    "meta.embedded.yuiscript": "yuiscript",
+                    "meta.embedded.inline.yuiscript": "yuiscript"
+                }
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "npm run convert",
@@ -60,5 +79,8 @@
     },
     "devDependencies": {
         "js-yaml": "^4.1.0"
+    },
+    "dependencies": {
+        "@vscode/vsce": "^3.1.1"
     }
 }

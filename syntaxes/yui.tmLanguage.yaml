@@ -36,7 +36,7 @@ repository:
             - begin: "(?x)
                 (?=
                     (?x:
-                        [^\\s[-?:,\\[\\]{}&!|>'\"%`]]
+                        [^\\s[-?:,\\[\\]{}|>'\"]]
                         | [?:-] \\S
                     )
                     (
@@ -57,7 +57,7 @@ repository:
               patterns:
                   - include: "#flow-scalar-plain-out-implicit-type"
                   - begin: "(?x)
-                        [^\\s[-?:,\\[\\]{}!|>'\"%`]]
+                        [^\\s[-?:,\\[\\]{}|>'\"]]
                         | [?:-] \\S"
                     beginCaptures:
                         "0":
@@ -152,7 +152,7 @@ repository:
             - begin: "(?x)
                 (?=
                     (?:
-                        [^\\s[-?:,\\[\\]{}&!|>'\"%`]]
+                        [^\\s[-?:,\\[\\]{}|>'\"]]
                         | [?:-] [^\\s[\\[\\]{},]]
                     )
                     (
@@ -176,7 +176,7 @@ repository:
               patterns:
                   - include: "#flow-scalar-plain-in-implicit-type"
                   - begin: "(?x)
-                        [^\\s[-?:,\\[\\]{}!|>'\"%`]]
+                        [^\\s[-?:,\\[\\]{}|>'\"]]
                         | [?:-] [^\\s[\\[\\]{},]]"
                     beginCaptures:
                         "0":
@@ -224,7 +224,7 @@ repository:
             - include: "#flow-scalar-plain-in-implicit-type"
             - begin: "(?x)
                 (?=
-                    [^\\s[-?:,\\[\\]{}!|>'\"%`]]
+                    [^\\s[-?:,\\[\\]{}|>'\"]]
                     | [?:-] \\S)"
               end: "(?x)
                 (?=
@@ -261,8 +261,7 @@ repository:
                           (null|Null|NULL|~)
 
                           \                            \
-                          | (y|Y|yes|Yes|YES|n|N|no|No|NO|true|True|TRUE|false|\
-                          False|FALSE|on|On|ON|off|Off|OFF)
+                          | (true|True|TRUE|false|False|FALSE)
 
                           \                            \
                           | (
@@ -401,7 +400,7 @@ repository:
             - include: "#flow-scalar-plain-out-implicit-type"
             - begin: "(?x)
                 (?=
-                    [^\\s[-?:,\\[\\]{}!|>'\"%`]]
+                    [^\\s[-?:,\\[\\]{}|>'\"]]
                     | [?:-] \\S)"
               end: "(?x)
                 (?=
@@ -436,8 +435,7 @@ repository:
                           (null|Null|NULL|~)
 
                           \                            \
-                          | (y|Y|yes|Yes|YES|n|N|no|No|NO|true|True|TRUE|false|\
-                          False|FALSE|on|On|ON|off|Off|OFF)
+                          | (true|True|TRUE|false|False|FALSE)
 
                           \                            \
                           | (
@@ -616,7 +614,7 @@ repository:
               contentName: string.unquoted.plain.in.yaml
     inline-yuiscript-in:
         name: meta.embedded.inline.yuiscript.in
-        begin: (?=[@&\$])
+        begin: (?=[@&\$~])
         end: "(?x)
             (?=
                 \\s* $
@@ -635,7 +633,7 @@ repository:
               contentName: string.unquoted.plain.out.yaml
     inline-yuiscript-out:
         name: meta.embedded.inline.yuiscript.out
-        begin: (?=[@&\$])
+        begin: (?=[@&\$~])
         end: \n
         patterns:
             - include: source.yuiscript

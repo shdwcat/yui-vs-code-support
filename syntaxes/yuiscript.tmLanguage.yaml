@@ -7,34 +7,37 @@ patterns:
 repository:
     escape-syntax:
         match: "@@"
-        name: constant.character.escape
-    
+        name: constant.character.escape.yui
+
     # inserted into #expression-operators
     operator-prefix-not:
-        name: keyword.operator.logical
+        name: keyword.operator.logical.yui
         match: not
     operator-infix-call:
-        match: ">>"
-        name: keyword.operator.call
+        match: ">>|\\|>"
+        name: keyword.operator.call.infix.yui
     operator-string-concat:
         match: \$\+
-        name: keyword.operator.concat
+        name: keyword.operator.concat.yui
 
     # inserted into #identifiers
     bound-variable:
-        match: "@[^\\(\\)\\s\\.,\\|]*"
-        name: variable.parameter
+        match: "@[^\\[\\]\\(\\)\\s\\.,\\|]*"
+        name: variable.parameter.yui
     resource-variable:
-        match: "&[^\\(\\)\\s\\.,\\|]+"
-        name: variable.language
+        match: "&[^\\[\\]\\(\\)\\s\\.,\\|]+"
+        name: variable.language.yui
     slot-variable:
-        match: \$[^\(\)\s\.,\\|]+
-        name: variable.parameter
+        match: \$[^\[\]\(\)\s\.,\\|]+
+        name: variable.parameter.yui
+    host-functionality:
+        match: "~[^\\[\\]\\(\\)\\s\\.,\\|]+"
+        name: variable.language.yui
 
     # inserted into #literal
     color-literal:
         match: "#(?:[a-f0-9]{6}|[a-f0-9]{8})\\b"
-        name: constant.rgb-value
+        name: constant.rgb-value.yui
 
     # modified javascript expression syntax extracted from:
     # https://github.com/microsoft/vscode/blob/main/extensions/javascript/syntaxes/JavaScript.tmLanguage.json
@@ -105,7 +108,6 @@ repository:
               end: (?==>|\{|(^\s*(export|function|class|interface|let|var|const|import|enum|namespace|module|type|abstract|declare)\s+))
               patterns:
                   - include: "#comment"
-                  - include: "#function-parameters"
             - name: meta.arrow.js
               begin: =>
               beginCaptures:
@@ -336,6 +338,7 @@ repository:
             - include: "#bound-variable"
             - include: "#slot-variable"
             - include: "#resource-variable"
+            - include: "#host-functionality"
             - include: "#object-identifiers"
             - include: "#punctuation-accessor"
     new-expr:
@@ -507,6 +510,7 @@ repository:
             - include: "#bound-variable"
             - include: "#slot-variable"
             - include: "#resource-variable"
+            - include: "#host-functionality"
             - include: "#object-identifiers"
             - match: >-
                   (?x)(?:(?:(\.)|(\?\.(?!\s*[[:digit:]])))\s*)?([_$[:alpha:]][_$[:alnum:]]*)(?=\s*=\s*(

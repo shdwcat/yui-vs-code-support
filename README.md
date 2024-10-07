@@ -8,6 +8,15 @@ Provides syntax highlighting for .yui files (see https://github.com/shdwcat/YUI)
 
 ## Release Notes
 
+### 0.2.0
+* yuiscript:
+	* adds recognition for ~ as 'host functionality' e.g. anything provided by the system (game objects, runtime functions, etc)
+	* adds recognition of |> as infix call (aka hack pipe operator)
+	* [ and ] now get the correct syntax for the expression within them
+* yui: removes YAML cruft that doesn't apply to YUI
+	* yes/no/on/off etc are no longer highlighted as literals
+	* ` and % no longer highlight as special language characters
+
 ### 0.1.1
 * Syntax highlighting should now work correctly inside parens
 	* YuiScript is now properly defined as a full syntax instead of just tacking things on top of JavaScript
