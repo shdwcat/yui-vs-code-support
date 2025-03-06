@@ -19,20 +19,26 @@ repository:
     operator-string-concat:
         match: \$\+
         name: keyword.operator.concat.yui
+    operator-optional:
+        match: "\\?"
+        name: keyword.operator.optional.infix.yui
+    operator-trace:
+        match: "!"
+        name: keyword.operator.trace.infix.yui
 
     # inserted into #identifiers
     bound-variable:
-        match: "@[^\\[\\]\\(\\)\\s\\.,\\|]*"
+        match: "@[^\\!\\?\\[\\]\\(\\)\\s\\.,\\|]*"
         name: variable.parameter.yui
     resource-variable:
-        match: "&[^\\[\\]\\(\\)\\s\\.,\\|]+"
+        match: "&[^\\!\\?\\[\\]\\(\\)\\s\\.,\\|]+"
         name: variable.language.yui
     slot-variable:
-        match: \$[^\[\]\(\)\s\.,\\|]+
+        match: \$[^\!\?\[\]\(\)\s\.,\\|]+
         name: variable.parameter.yui
     host-functionality:
-        match: "~[^\\[\\]\\(\\)\\s\\.,\\|]+"
-        name: variable.language.yui
+        match: "~[^\\!\\?\\[\\]\\(\\)\\s\\.,\\|]+"
+        name: support.variable.yui entity.name.function.yui
 
     # inserted into #literal
     color-literal:
@@ -355,6 +361,8 @@ repository:
             - include: "#operator-string-concat"
             - include: "#operator-prefix-not"
             - include: "#operator-infix-call"
+            - include: "#operator-optional"
+            - include: "#operator-trace"
             - name: keyword.operator.new.js
               match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))new(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
             - name: keyword.operator.comparison.js

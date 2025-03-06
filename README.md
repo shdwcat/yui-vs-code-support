@@ -9,16 +9,19 @@ Provides syntax highlighting for .yui files (see https://github.com/shdwcat/YUI)
 ## Release Notes
 
 ### 0.2.0
-* yuiscript:
-	* adds recognition for ~ as 'host functionality' e.g. anything provided by the system (game objects, runtime functions, etc)
-	* adds recognition of |> as infix call (aka hack pipe operator)
-	* [ and ] now get the correct syntax for the expression within them
 
 * yui: removes YAML cruft that doesn't apply to YUI
 	* yes/no/on/off etc are no longer highlighted as literals
 	* ` and % no longer highlight as special language characters
 	* scalars with comments after them (e.g. `foo: bar //`) highlight correctly
 	* remove scalar highlighting for unsupported data formats like base 60, time stamps, etc
+
+* yuiscript:
+	* `[` and `]` now get the correct syntax for the expression within them
+	* new `~host` identifiers, e.g. anything provided by the system (game objects, runtime functions, etc) (added in YUI 0.6.4)
+	* new `|>` infix call (aka pipe operator) (added in YUI 0.6.4)
+	* new `?` optional operator modifies other infix operators, e.g. `foo?.bar` `foo?[bar]` `foo?(bar)` to evaluate to null if the first operand is null
+	* new `!` trace operator to trigger trace/breakpoints inside YUI expressions
 
 ### 0.1.1
 * Syntax highlighting should now work correctly inside parens
