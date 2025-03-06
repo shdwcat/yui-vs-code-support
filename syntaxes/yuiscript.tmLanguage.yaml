@@ -295,7 +295,7 @@ repository:
                   - include: "#expression"
             - include: "#punctuation-comma"
     ternary-expression:
-        begin: (?!\?\.\s*[^[:digit:]])(then)(?!\?)
+        begin: \s*(then)
         beginCaptures:
             "1":
                 name: keyword.operator.ternary.js
