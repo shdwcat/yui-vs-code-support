@@ -228,24 +228,25 @@ repository:
                       name: constant.other.timestamp.yaml
                   "6":
                       name: constant.language.value.yaml
-              match: "(?x)
-                        (?:
-                          (null|Null|NULL)
-                          | (true|True|TRUE|false|False|FALSE)
-                          | ((?:
-                            [-+]? 0b [0-1_]+
-                            | [-+]? 0o  [0-7_]+
-                            | [-+]? (?: 0|[1-9][0-9_]*)
-                            | [-+]? 0x [0-9a-fA-F_]+
-                            ))
-                        | ((?:
-                          [-+]? (?: [0-9] [0-9_]*)? \\. [0-9.]* (?: [eE] [-+] [0-9]+)?
-                          ))
-                        )
-                        (?=\\s*$|\\s+\/\/|\\s*:(\\s|$)
-                          | \\s* : [\\[\\]{},]
-                          | \\s* [\\[\\]{},]
-                          )"
+              match: >-
+                (?x)
+                  (?:
+                    (null|Null|NULL)
+                    | (true|True|TRUE|false|False|FALSE)
+                    | ((?:
+                      [-+]? 0b [0-1_]+            # binary
+                      | [-+]? 0o  [0-7_]+         # octal
+                      | [-+]? (?: 0|[1-9][0-9_]*) # deximal
+                      | [-+]? 0x [0-9a-fA-F_]+    # hex
+                      ))
+                    | ((?:
+                        [-+]? (?: [0-9] [0-9_]*)? \. [0-9.]* (?: [eE] [-+] [0-9]+)?
+                      ))
+                  )
+                  (?=\s*$|\s+//|\s*:(\s|$)
+                    | \s* : [\[\]{},]
+                    | \s* [\[\]{},]
+                  )
     flow-scalar-plain-out:
         patterns:
             - include: "#flow-scalar-plain-out-implicit-type"
@@ -273,21 +274,22 @@ repository:
                       name: constant.numeric.integer.yaml
                   "4":
                       name: constant.numeric.float.yaml
-              match: "(?x)
-                        (?:
-                          (null|Null|NULL)
-                          | (true|True|TRUE|false|False|FALSE)
-                          | ((?:
-                            [-+]? 0b [0-1_]+
-                            | [-+]? 0o  [0-7_]+
-                            | [-+]? (?: 0|[1-9][0-9_]*)
-                            | [-+]? 0x [0-9a-fA-F_]+
-                            ))
-                        | ((?:
-                          [-+]? (?: [0-9] [0-9_]*)? \\. [0-9.]* (?: [eE] [-+] [0-9]+)?
-                          ))
-                        )
-                        (?=\\s*$|\\s+\/\/|\\s*:(\\s|$))"
+              match: >-
+                (?x)
+                  (?:
+                    (null|Null|NULL)
+                    | (true|True|TRUE|false|False|FALSE)
+                    | ((?:
+                      [-+]? 0b [0-1_]+            # binary
+                      | [-+]? 0o  [0-7_]+         # octal
+                      | [-+]? (?: 0|[1-9][0-9_]*) # deximal
+                      | [-+]? 0x [0-9a-fA-F_]+    # hex
+                      ))
+                    | ((?:
+                        [-+]? (?: [0-9] [0-9_]*)? \. [0-9.]* (?: [eE] [-+] [0-9]+)?
+                      ))
+                  )
+                  (?=\s*$|\s+//|\s*:(\s|$))
     flow-scalar-single-quoted:
         begin: "'"
         beginCaptures:
