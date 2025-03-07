@@ -112,8 +112,6 @@ repository:
                   "1":
                       name: storage.modifier.async.js
               end: (?==>|\{|(^\s*(export|function|class|interface|let|var|const|import|enum|namespace|module|type|abstract|declare)\s+))
-              patterns:
-                  - include: "#comment"
             - name: meta.arrow.js
               begin: =>
               beginCaptures:
@@ -136,18 +134,15 @@ repository:
             - include: "#object-member"
     object-member:
         patterns:
-            - include: "#comment"
             - name: meta.object.member.js meta.object-literal.key.js
               begin: (?=\[)
               end: (?=:)|((?<=[\]])(?=\s*[\(\<]))
               patterns:
-                  - include: "#comment"
                   - include: "#array-literal"
             - name: meta.object.member.js meta.object-literal.key.js
               begin: (?=[\'\"\`])
               end: (?=:)|((?<=[\'\"\`])(?=((\s*[\(\<,}])|(\s+(as)\s+))))
               patterns:
-                  - include: "#comment"
                   - include: "#string"
             - name: meta.object.member.js meta.object-literal.key.js
               begin: >-
@@ -163,7 +158,6 @@ repository:
                   )(?!\$)))
               end: (?=:)|(?=\s*([\(\<,}])|(\s+as\s+))
               patterns:
-                  - include: "#comment"
                   - include: "#numeric-literal"
             - name: meta.object.member.js
               match: (?![_$[:alpha:]])([[:digit:]]+)\s*(?=(\/\*([^\*]|(\*[^\/]))*\*\/\s*)*:)
@@ -314,7 +308,6 @@ repository:
                     end: (?=\s*(?:(\?\.\s*)|(\!))?((<\s*(((keyof|infer|typeof|readonly)\s+)|(([_$[:alpha:]][_$[:alnum:]]*|(\{([^\{\}]|(\{([^\{\}]|\{[^\{\}]*\})*\}))*\})|(\(([^\(\)]|(\(([^\(\)]|\([^\(\)]*\))*\)))*\))|(\[([^\[\]]|(\[([^\[\]]|\[[^\[\]]*\])*\]))*\])|(\'([^\'\\]|\\.)*\')|(\"([^\"\\]|\\.)*\")|(\`([^\`\\]|\\.)*\`))(?=\s*([\<\>\,\.\[]|=>|&(?!&)|\|(?!\|)))))([^<>\(]|(\(([^\(\)]|(\(([^\(\)]|\([^\(\)]*\))*\)))*\))|(?<==)\>|\<\s*(((keyof|infer|typeof|readonly)\s+)|(([_$[:alpha:]][_$[:alnum:]]*|(\{([^\{\}]|(\{([^\{\}]|\{[^\{\}]*\})*\}))*\})|(\(([^\(\)]|(\(([^\(\)]|\([^\(\)]*\))*\)))*\))|(\[([^\[\]]|(\[([^\[\]]|\[[^\[\]]*\])*\]))*\])|(\'([^\'\\]|\\.)*\')|(\"([^\"\\]|\\.)*\")|(\`([^\`\\]|\\.)*\`))(?=\s*([\<\>\,\.\[]|=>|&(?!&)|\|(?!\|)))))(([^<>\(]|(\(([^\(\)]|(\(([^\(\)]|\([^\(\)]*\))*\)))*\))|(?<==)\>|\<\s*(((keyof|infer|typeof|readonly)\s+)|(([_$[:alpha:]][_$[:alnum:]]*|(\{([^\{\}]|(\{([^\{\}]|\{[^\{\}]*\})*\}))*\})|(\(([^\(\)]|(\(([^\(\)]|\([^\(\)]*\))*\)))*\))|(\[([^\[\]]|(\[([^\[\]]|\[[^\[\]]*\])*\]))*\])|(\'([^\'\\]|\\.)*\')|(\"([^\"\\]|\\.)*\")|(\`([^\`\\]|\\.)*\`))(?=\s*([\<\>\,\.\[]|=>|&(?!&)|\|(?!\|)))))([^<>\(]|(\(([^\(\)]|(\(([^\(\)]|\([^\(\)]*\))*\)))*\))|(?<==)\>)*(?<!=)\>))*(?<!=)\>)*(?<!=)>\s*)?\())
                     patterns:
                         - include: "#function-call-target"
-                  - include: "#comment"
                   - include: "#function-call-optionals"
                   - include: "#paren-expression"
             - begin: (?=(((([_$[:alpha:]][_$[:alnum:]]*)(\s*\??\.\s*(\#?[_$[:alpha:]][_$[:alnum:]]*))*)|(\??\.\s*\#?[_$[:alpha:]][_$[:alnum:]]*))|(?<=[\)]))(<\s*[\{\[\(]\s*$))
@@ -325,7 +318,6 @@ repository:
                     end: (?=(<\s*[\{\[\(]\s*$))
                     patterns:
                         - include: "#function-call-target"
-                  - include: "#comment"
                   - include: "#function-call-optionals"
     function-call-target:
         patterns:
@@ -391,8 +383,6 @@ repository:
                       name: keyword.operator.assignment.compound.js
                   "2":
                       name: keyword.operator.arithmetic.js
-              patterns:
-                  - include: "#comment"
             - match: (?<=[_$[:alnum:])\]])\s*(?:(/=)|(?:(/)(?![/*])))
               captures:
                   "1":
