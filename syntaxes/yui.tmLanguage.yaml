@@ -57,10 +57,7 @@ repository:
                   - begin: "(?x)
                         [^\\s[-?:,\\[\\]{}|>'\"]]
                         | [?:-] \\S"
-                    beginCaptures:
-                        "0":
-                            name: entity.name.tag.yaml
-                    contentName: entity.name.tag.yaml
+                    name: entity.name.tag.yaml
                     end: "(?x)
                         (?=
                             \\s* $
