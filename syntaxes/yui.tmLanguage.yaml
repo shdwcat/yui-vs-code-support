@@ -26,7 +26,7 @@ repository:
             - include: "#block-pair"
     block-node:
         patterns:
-            - include: "#prototype"
+            - include: "#comment"
             - include: "#block-scalar"
             - include: "#block-collection"
             - include: "#flow-scalar-plain-out"
@@ -114,13 +114,13 @@ repository:
                 name: punctuation.definition.mapping.end.yaml
         name: meta.flow-mapping.yaml
         patterns:
-            - include: "#prototype"
+            - include: "#comment"
             - match: ","
               name: punctuation.separator.mapping.yaml
             - include: "#flow-pair"
     flow-node:
         patterns:
-            - include: "#prototype"
+            - include: "#comment"
             - include: "#flow-collection"
             - include: "#flow-scalar"
     flow-pair:
@@ -314,7 +314,7 @@ repository:
                 name: punctuation.definition.sequence.end.yaml
         name: meta.flow-sequence.yaml
         patterns:
-            - include: "#prototype"
+            - include: "#comment"
             - match: ","
               name: punctuation.separator.sequence.yaml
             - include: "#flow-pair"
@@ -366,6 +366,3 @@ repository:
     node:
         patterns:
             - include: "#block-node"
-    prototype:
-        patterns:
-            - include: "#comment"
