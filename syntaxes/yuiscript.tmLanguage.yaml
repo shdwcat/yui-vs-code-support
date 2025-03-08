@@ -14,13 +14,16 @@ repository:
         name: keyword.operator.logical.yui
         match: not
     operator-infix-call:
-        match: ">>|\\|>"
+        match: \|>
         name: keyword.operator.call.infix.yui
+    operator-infix-call-deprecated:
+        match: ">>"
+        name: keyword.operator.call.infix.yui invalid.illegal # illegal so that it gets red highlight
     operator-string-concat:
         match: \$\+
         name: keyword.operator.concat.yui
     operator-optional:
-        match: "\\?"
+        match: \?
         name: keyword.operator.optional.infix.yui
     operator-trace:
         match: "!"
@@ -313,6 +316,7 @@ repository:
             - include: "#operator-string-concat"
             - include: "#operator-prefix-not"
             - include: "#operator-infix-call"
+            - include: "#operator-infix-call-deprecated"
             - include: "#operator-optional"
             - include: "#operator-trace"
             - name: keyword.operator.new.js
