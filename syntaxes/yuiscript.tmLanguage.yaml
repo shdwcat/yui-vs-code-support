@@ -70,7 +70,7 @@ repository:
             - include: "#comment"
             - include: "#arrow-function"
             - include: "#ternary-expression"
-            - include: "#new-expr"
+            # - include: "#new-expr"
             - include: "#object-literal"
             - include: "#expression-operators"
             - include: "#function-call"
@@ -273,15 +273,16 @@ repository:
             - include: "#host-functionality"
             - include: "#object-identifiers"
             - include: "#punctuation-accessor"
-    new-expr:
-        name: new.expr.js
-        begin: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))(new)(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
-        beginCaptures:
-            "1":
-                name: keyword.operator.new.js
-        end: (?<=\))|(?=[;),}\]:?\-\+\>]|\|\||\&\&|\!\=\=|$|((?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))new(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.)))|((?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))function((\s+[_$[:alpha:]][_$[:alnum:]]*)|(\s*[\(]))))
-        patterns:
-            - include: "#expression"
+    ## disabled until implemented ##
+    # new-expr:
+    #     name: new.expr.js
+    #     begin: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))(new)(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
+    #     beginCaptures:
+    #         "1":
+    #             name: keyword.operator.new.js
+    #     end: (?<=\))|(?=[;),}\]:?\-\+\>]|\|\||\&\&|\!\=\=|$|((?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))new(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.)))|((?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))function((\s+[_$[:alpha:]][_$[:alnum:]]*)|(\s*[\(]))))
+    #     patterns:
+    #         - include: "#expression"
     expression-operators:
         patterns:
             - include: "#operator-string-concat"
@@ -290,8 +291,10 @@ repository:
             - include: "#operator-infix-call-deprecated"
             - include: "#operator-optional"
             - include: "#operator-trace"
-            - name: keyword.operator.new.js
-              match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))new(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
+            - include: "#operator-directive"
+            ## disabled until implemented ##
+            # - name: keyword.operator.new.js
+            #   match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))new(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
             - name: keyword.operator.comparison.js
               match: ==|!=
             - name: keyword.operator.relational.js
