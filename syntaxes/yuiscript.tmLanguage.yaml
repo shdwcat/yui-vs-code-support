@@ -183,14 +183,15 @@ repository:
               captures:
                   "0":
                       name: meta.object-literal.key.js
-            - name: meta.object.member.js
-              begin: \.\.\.
-              beginCaptures:
-                  "0":
-                      name: keyword.operator.spread.js
-              end: (?=,|\})
-              patterns:
-                  - include: "#expression"
+            ## disabled until implemented ##
+            # - name: meta.object.member.js
+            #   begin: \.\.\.
+            #   beginCaptures:
+            #       "0":
+            #           name: keyword.operator.spread.js
+            #   end: (?=,|\})
+            #   patterns:
+            #       - include: "#expression"
             - name: meta.object.member.js
               match: ([_$[:alpha:]][_$[:alnum:]]*)\s*(?=,|\}|$|\/\/|\/\*)
               captures:
