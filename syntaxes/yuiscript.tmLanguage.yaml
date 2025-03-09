@@ -41,16 +41,16 @@ repository:
     # inserted into #identifiers
     bound-variable:
         match: "@[^\\!\\?\\[\\]\\(\\)\\s\\.,\\|]*"
-        name: variable.parameter.yui
+        name: variable.parameter.bound.yui
     resource-variable:
         match: "&[^\\!\\?\\[\\]\\(\\)\\s\\.,\\|]+"
-        name: variable.language.yui
+        name: variable.language.resource.yui
     slot-variable:
         match: \$[^\!\?\[\]\(\)\s\.,\\|]+
-        name: variable.parameter.yui
+        name: variable.parameter.slot.yui
     host-functionality:
         match: "~[^\\!\\?\\[\\]\\(\\)\\s\\.,\\|]+"
-        name: support.variable.yui entity.name.function.yui
+        name: support.variable.host.yui entity.name.function.yui
 
     # inserted into #literal
     color-literal:
