@@ -22,6 +22,8 @@ Provides syntax highlighting for .yui files (see https://github.com/shdwcat/YUI)
 	* new `|>` infix call (aka pipe operator) (added in YUI 0.6.4)
 	* new `?` optional operator modifies other infix operators, e.g. `foo?.bar` `foo?[bar]` `foo?(bar)` to evaluate to null if the first operand is null
 	* new `!` trace operator to trigger trace/breakpoints inside YUI expressions
+	* removes lot of cruft from copying the javascript syntax highlighter that doesn't apply
+	* identifiers should highlight more correctly and also highlight invalid identifiers
 
 ### 0.1.1
 * Syntax highlighting should now work correctly inside parens
