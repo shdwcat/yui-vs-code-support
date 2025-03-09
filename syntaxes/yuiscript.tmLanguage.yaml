@@ -494,7 +494,7 @@ repository:
                       name: variable.other.property.js
             - name: variable.other.constant.js
               match: ([[:upper:]][_$[:digit:][:upper:]]*)(?![_$[:alnum:]])
-            - name: variable.other.readwrite.js
+            - name: variable.parameter.readwrite.js
               match: "[_$[:alpha:]][_$[:alnum:]]*"
     object-identifiers:
         patterns:
