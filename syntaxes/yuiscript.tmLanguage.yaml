@@ -301,19 +301,22 @@ repository:
               match: \=
             - name: keyword.operator.arithmetic.js
               match: \*|/|-|\+ # |% # no modulus supported currently
-            - begin: (?<=[_[:alnum:])\]])\s*(?=(\/\*([^\*]|(\*[^\/]))*\*\/\s*)+(?:(/=)|(?:(/)(?![/*]))))
-              end: (?:(/=)|(?:(/)(?!\*([^\*]|(\*[^\/]))*\*\/)))
-              endCaptures:
-                  "1":
-                      name: keyword.operator.assignment.compound.js
-                  "2":
-                      name: keyword.operator.arithmetic.js
-            - match: (?<=[_[:alnum:])\]])\s*(?:(/=)|(?:(/)(?![/*])))
-              captures:
-                  "1":
-                      name: keyword.operator.assignment.compound.js
-                  "2":
-                      name: keyword.operator.arithmetic.js
+
+            ## disabled until implemented ##
+            # - begin: (?<=[_[:alnum:])\]])\s*(?=(\/\*([^\*]|(\*[^\/]))*\*\/\s*)+(?:(/=)|(?:(/)(?![/*]))))
+            #   end: (?:(/=)|(?:(/)(?!\*([^\*]|(\*[^\/]))*\*\/)))
+            #   endCaptures:
+            #       "1":
+            #           name: keyword.operator.assignment.compound.js
+            #       "2":
+            #           name: keyword.operator.arithmetic.js
+            # - match: (?<=[_[:alnum:])\]])\s*(?:(/=)|(?:(/)(?![/*])))
+            #   captures:
+            #       "1":
+            #           name: keyword.operator.assignment.compound.js
+            #       "2":
+            #           name: keyword.operator.arithmetic.js
+
     literal:
         patterns:
             - include: "#color-literal"
