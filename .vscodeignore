@@ -4,6 +4,9 @@
 
 *.vsix
 
-syntaxes/*.yaml
+packaging_instructions.md
 
+syntaxes/*.yaml
+syntaxes/js.tmLanguage.*
+test
 node_modules
