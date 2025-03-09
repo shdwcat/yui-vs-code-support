@@ -40,16 +40,16 @@ repository:
 
     # inserted into #identifiers
     bound-variable:
-        match: "@[^\\!\\?\\[\\]\\(\\)\\s\\.,\\|]*"
+        match: \B@[^\!\?\[\]\(\)\s\.,\|/^"'`"\-=:;#%+*@&$~]*
         name: variable.parameter.bound.yui
     resource-variable:
-        match: "&[^\\!\\?\\[\\]\\(\\)\\s\\.,\\|]+"
+        match: \B&[^\!\?\[\]\(\)\s\.,\|/^"'`\-=:;#%+*@&$~]+
         name: variable.language.resource.yui
     slot-variable:
-        match: \$[^\!\?\[\]\(\)\s\.,\\|]+
+        match: \B\$[^\!\?\[\]\(\)\s\.,\\|/^"'`\-=:;#%+*@&$~]+
         name: variable.parameter.slot.yui
     host-functionality:
-        match: "~[^\\!\\?\\[\\]\\(\\)\\s\\.,\\|]+"
+        match: \B~[^\!\?\[\]\(\)\s\.,\|/^"'`\-=:;#%+*@&$~]+
         name: support.variable.host.yui entity.name.function.yui
 
     # inserted into #literal
@@ -455,8 +455,10 @@ repository:
                       name: punctuation.accessor.optional.js
                   "3":
                       name: variable.other.property.js
-            - name: variable.parameter.readwrite.js
-              match: "[_$[:alpha:]][_$[:alnum:]]*"
+            - name: variable.parameter.js
+              match: "[_[:alpha:]][_[:alnum:]]*"
+            - name: variable.identifier.illegal invalid.illegal
+              match: "[_$&@~#^:;%[:alpha:]][_$&@~#^:;%[:alnum:]]*"
     object-identifiers:
         patterns:
             - match: |-
