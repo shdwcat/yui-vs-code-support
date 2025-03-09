@@ -411,12 +411,6 @@ repository:
     undefined-literal:
         name: constant.language.undefined.js
         match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))undefined(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
-    numericConstant-literal:
-        patterns:
-            - name: constant.language.nan.js
-              match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))NaN(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
-            - name: constant.language.infinity.js
-              match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))Infinity(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
     support-objects:
         patterns:
             - match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))(new)\s*(?:(\.)|(\?\.(?!\s*[[:digit:]])))\s*(target)\b(?!\$)
@@ -429,6 +423,13 @@ repository:
                       name: punctuation.accessor.optional.js
                   "4":
                       name: support.variable.property.target.js
+    ## disabled until nan/inf parsing is supported
+    # numericConstant-literal:
+    #     patterns:
+    #         - name: constant.language.nan.js
+    #           match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))NaN(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
+    #         - name: constant.language.infinity.js
+    #           match: (?<![_$[:alnum:]])(?:(?<=\.\.\.)|(?<!\.))Infinity(?![_$[:alnum:]])(?:(?=\.\.\.)|(?!\.))
     identifiers:
         patterns:
             - include: "#bound-variable"
