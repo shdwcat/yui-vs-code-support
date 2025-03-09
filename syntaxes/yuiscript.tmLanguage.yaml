@@ -28,6 +28,15 @@ repository:
     operator-trace:
         match: "!"
         name: keyword.operator.trace.infix.yui
+    operator-directive:
+        match: (\|)\s*(?:(?:(trace|final|resolve|eval)\b)|([[:alnum:]]+))
+        captures:
+            "1":
+                name: keyword.operator.directive.yui
+            "2":
+                name: support.directive.yui
+            "3":
+                name: support.directive.yui invalid.illegal
 
     # inserted into #identifiers
     bound-variable:
@@ -299,8 +308,6 @@ repository:
               match: \!|\?\?|and|or
             - name: keyword.operator.assignment.js
               match: \=
-            - name: keyword.operator.directive.ys
-              match: \|
             - name: keyword.operator.arithmetic.js
               match: "%|\\*|/|-|\\+"
             - begin: (?<=[_$[:alnum:])\]])\s*(?=(\/\*([^\*]|(\*[^\/]))*\*\/\s*)+(?:(/=)|(?:(/)(?![/*]))))
