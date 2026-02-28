@@ -5,6 +5,13 @@ All notable changes to the "yui-vs-code-support" extension will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### 0.2.1
+* yui:
+	* spaces are no longer allowed in unquoted keys
+		* e.g. in `foo space: bar` the entire line will be treated as a string instead of key/value pair
+		* this also fixes an issue where using a `:` in an end of line comment could cause incorrect highlighting
+	* True/TRUE/False/FALSE/Null/NULL are no longer highlighted as literals (e.g. only lowercase true/false/null)
+
 ### 0.2.0
 * yui: removes YAML cruft that doesn't apply to YUI
 	* yes/no/on/off etc are no longer highlighted as literals
