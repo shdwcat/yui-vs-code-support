@@ -15,7 +15,6 @@ repository:
               beginCaptures:
                 "1":
                     name: entity.other.attribute-name
-                "2":
               end: "(?x)
                 (?=
                     \\s* $
@@ -33,39 +32,26 @@ repository:
             - include: "#flow-node"
     block-pair:
         patterns:
-            - begin: "(?x)
-                (?=
-                    (?x:
-                        [^\\s[-?:,\\[\\]{}|>'\"]]
-                        | [?:-] \\S
-                    )
-                    (
-                        [^\\s:]
-                        | : \\S
-                        | \\s+ (?![#\\s])
-                    )*
-                    \\s* : (\\s|$)
-                )"
+            - name: meta.block.pair.yaml
+              begin: ((?:"[^{}()"]+")|(?:[^\s{}()]+))(:)
               end: "(?x)
                 (?=
                     \\s* $
                     | \\s+ //
-                    | \\s* : (\\s|$)
                 )"
+              beginCaptures:
+                "1":
+                  name: meta.block.pair.key.yaml
+                  patterns:
+                    - include: "#flow-scalar-double-quoted"
+                    - match: ([^\s{}()]+)
+                      name: entity.name.tag.yaml
+                "2":
+                  name: punctuation.separator.key-value.mapping.yaml
+              contentName: meta.block.pair.value.yaml
               patterns:
-                  - include: "#flow-scalar-plain-out-implicit-type"
-                  - begin: "(?x)
-                        [^\\s[-?:,\\[\\]{}|>'\"]]
-                        | [?:-] \\S"
-                    name: entity.name.tag.yaml
-                    end: "(?x)
-                        (?=
-                            \\s* $
-                            | \\s+ //
-                            | \\s* : (\\s|$)
-                        )"
-            - match: :(?=\s|$)
-              name: punctuation.separator.key-value.mapping.yaml
+                - include: "#flow-scalar-plain-out"
+                - include: "#flow-node"
     block-scalar:
         begin: (?:(\|))([1-9])?([-+])?(.*\n?)
         beginCaptures:
