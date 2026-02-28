@@ -228,8 +228,8 @@ repository:
               match: >-
                 (?x)
                   (?:
-                    (null|Null|NULL)
-                    | (true|True|TRUE|false|False|FALSE)
+                    (null)
+                    | (true|false)
                     | ((?:
                       [-+]? 0b [0-1_]+            # binary
                       | [-+]? 0o  [0-7_]+         # octal
@@ -274,8 +274,8 @@ repository:
               match: >-
                 (?x)
                   (?:
-                    (null|Null|NULL)
-                    | (true|True|TRUE|false|False|FALSE)
+                    (null)
+                    | (true|false)
                     | ((?:
                       [-+]? 0b [0-1_]+            # binary
                       | [-+]? 0o  [0-7_]+         # octal
