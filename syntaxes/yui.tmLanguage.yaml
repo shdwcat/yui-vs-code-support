@@ -13,13 +13,12 @@ repository:
         patterns:
             - begin: "(type)(:) "
               beginCaptures:
-                "1":
-                    name: entity.other.attribute-name
+                  "1":
+                      name: entity.other.attribute-name
               end: "(?x)
                 (?=
                     \\s* $
                     | \\s+ //
-                    | \\s* : (\\s|$)
                 )"
               contentName: "constant.language.type.yui"
             - include: "#block-pair"
@@ -33,7 +32,7 @@ repository:
     block-pair:
         patterns:
             - name: meta.block.pair.yaml
-              begin: ((?:"[^{}()"]+")|(?:[^\s{}()]+))(:)
+              begin: (?<=^|\s)((?:"[^\s"]+")|(?:[^\s"]+))(:)
               end: "(?x)
                 (?=
                     \\s* $
@@ -41,13 +40,13 @@ repository:
                 )"
               beginCaptures:
                 "1":
-                  name: meta.block.pair.key.yaml
-                  patterns:
-                    - include: "#flow-scalar-double-quoted"
-                    - match: ([^\s{}()]+)
-                      name: entity.name.tag.yaml
+                    name: meta.block.pair.key.yaml
+                    patterns:
+                        - include: "#flow-scalar-double-quoted"
+                        - match: ([^\s{}()]+)
+                          name: entity.name.tag.yaml
                 "2":
-                  name: punctuation.separator.key-value.mapping.yaml
+                    name: punctuation.separator.key-value.mapping.yaml
               contentName: meta.block.pair.value.yaml
               patterns:
                 - include: "#flow-scalar-plain-out"
